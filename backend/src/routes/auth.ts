@@ -24,3 +24,14 @@ router.post("/register", async (req, res) => {
     throw e;
   }
 });
+
+// login, body: email, password
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body ?? {};
+  const { rows } = await pool.query("SELECT * FROM users WHERE email = lower($1)", [email ?? ""]);
+  const u = rows[0];
+  if (!u || !(await bcrypt.compare(String(password ?? ""), u.password_hash))) {
+    return res.status(401).json({ error: "Email atau password salah." });
+  }
+  res.json({ token: sign(u.id), user: { id: u.id, nama: u.nama, email: u.email } });
+});
