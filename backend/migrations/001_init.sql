@@ -17,3 +17,13 @@ CREATE TABLE mata_kuliah (
   kode    TEXT NOT NULL,
   dosen   TEXT NOT NULL
 );
+
+CREATE TABLE tugas (
+  id             SERIAL PRIMARY KEY,
+  judul          TEXT NOT NULL,
+  deskripsi      TEXT NOT NULL DEFAULT '',
+  deadline       TIMESTAMPTZ NOT NULL,
+  status         status_tugas NOT NULL DEFAULT 'belum',
+  mata_kuliah_id INTEGER NOT NULL REFERENCES mata_kuliah(id) ON DELETE CASCADE,
+  created_at     TIMESTAMPTZ NOT NULL DEFAULT now()
+);
