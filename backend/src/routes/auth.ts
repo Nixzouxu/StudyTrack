@@ -35,3 +35,11 @@ router.post("/login", async (req, res) => {
   }
   res.json({ token: sign(u.id), user: { id: u.id, nama: u.nama, email: u.email } });
 });
+
+// data user yang lagi login
+router.get("/me", requireAuth, async (_req, res) => {
+  const { rows } = await pool.query("SELECT id, nama, email FROM users WHERE id = $1", [res.locals.userId]);
+  res.json(rows[0]);
+});
+
+export default router;
