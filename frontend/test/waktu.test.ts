@@ -29,3 +29,9 @@ test("pemisah ada tepat setelah kelompok mendekati", () => {
   assert.equal(indeksPemisah([k("normal"), k("overdue")]), -1);
   assert.equal(indeksPemisah([k("mendekati_deadline")]), -1);
 });
+
+test("porsi rel waktu dibatasi 0 sampai 1", () => {
+    assert.equal(porsiSisa24Jam(43200), 0.5);
+    assert.equal(porsiSisa24Jam(-10), 0);
+    assert.equal(porsiSisa24Jam(999999), 1);
+  });
