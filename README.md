@@ -26,3 +26,23 @@ Menjalankan test:
 cd backend
 npm test
 ```
+## Frontend
+
+React, Vite, dan TypeScript.
+
+Cara menjalankan (backend harus sudah jalan):
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Buka http://localhost:5173. Request ke /api diteruskan ke backend di port 4000.
+
+Test:
+
+```bash
+cd frontend
+npm test
+```
