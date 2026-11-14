@@ -26,3 +26,13 @@
   .bd-glow-a { opacity: 0.16; }
   .bd-glow-b { opacity: 0.18; }
 }
+
+/* pindah tab, animasi isi halaman diurus useRevealOnce */
+.page-enter { animation: page-in 260ms var(--ease-out) both; }
+@keyframes page-in { from { opacity: 0; translate: 0 10px; } }
+
+/* kartu naik sedikit pas di-hover */
+.task, .course { transition: translate var(--dur-ui) var(--ease-out), box-shadow var(--dur-ui) ease; }
+@media (hover: hover) and (pointer: fine) {
+  .task:hover, .course:hover { translate: 0 -3px; box-shadow: var(--shadow-md); }
+}
