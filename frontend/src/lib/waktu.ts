@@ -21,3 +21,8 @@ export function labelPenanda(kategori: Kategori, sisaDetik: number): string | nu
 export function keIsoDenganZona(nilaiInput: string): string {
   return new Date(nilaiInput).toISOString();
 }
+// seberapa banyak sisa waktu dari 24 jam (0 sampai 1), cuma buat panjang garis di card
+// kategorinya tetap dari backend
+export function porsiSisa24Jam(sisaDetik: number): number {
+  return Math.min(1, Math.max(0, sisaDetik / 86400));
+}
