@@ -1,0 +1,100 @@
+/*
+  token desain StudyTrack: warna, ukuran, dan durasi animasi
+  semua komponen cuma pakai variabel dari sini
+  kontras warna teks dan latarnya sudah dicek, minimal AA
+*/
+:root {
+  color-scheme: light dark;
+
+  --font-display: "Bricolage Grotesque Variable", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Instrument Sans Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  /* ukuran font */
+  --text-xs: 0.8125rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5625rem;
+  --text-2xl: clamp(1.9rem, 1rem + 3vw, 3rem);
+  --text-hero: clamp(2.4rem, 0.5rem + 4.6vw, 5.4rem);
+
+  /* spasi kelipatan 8 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-full: 999px;
+
+  --shadow-sm: 0 1px 2px rgb(20 21 31 / 0.08);
+  --shadow-md: 0 14px 40px rgb(20 21 31 / 0.16);
+
+  /* animasi: kurva dan durasi */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --dur-press: 120ms;
+  --dur-ui: 180ms;
+  --dur-dialog: 200ms;
+
+  --bg: #f3eee4;
+  --surface: #fbf8f2;
+  --border: #d9d0bf;
+  --text: #14151f;
+  --text-muted: #5b5648;
+  --primary: #14151f;
+  --primary-hover: #2b2d3f;
+  --on-primary: #f3eee4;
+  --focus: #c2410c;
+  --danger: #b3122b;
+
+  --soon-bg: #ffe9da;
+  --soon-accent: #e8480c;
+  --soon-text: #7a2a00;
+  --late-bg: #fbdce0;
+  --late-accent: #b3122b;
+  --late-text: #7a0c1c;
+  --belum-bg: #f6d55c;
+  --belum-text: #3d3000;
+  --selesai-bg: #cfe8d8;
+  --selesai-text: #12482c;
+
+  /* landing page selalu gelap, di tema apa pun */
+  --ink: #0b0d17;
+  --paper: #f3eee4;
+  --paper-muted: #a9a596;
+  --signal: #ff6a2b;
+  --crimson: #ff6b7d;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+      --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+      --shadow-md: 0 14px 40px rgb(0 0 0 / 0.55);
+  
+      --bg: #0d0f1a;
+      --surface: #151827;
+      --border: #2a2f45;
+      --text: #f1ece1;
+      --text-muted: #a5a190;
+      --primary: #f3eee4;
+      --primary-hover: #ffffff;
+      --on-primary: #0d0f1a;
+      --focus: #ff8a4c;
+      --danger: #ff8a93;
+  
+      --soon-bg: #3a1a0a;
+      --soon-accent: #ff7a3d;
+      --soon-text: #ffc9a8;
+      --late-bg: #3b0e17;
+      --late-accent: #ff6b7d;
+      --late-text: #ffc2ca;
+      --belum-bg: #4a3d08;
+      --belum-text: #f9e08a;
+      --selesai-bg: #0f3322;
+      --selesai-text: #9ee0b8;
+    }
+  }
