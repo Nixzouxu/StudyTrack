@@ -33,3 +33,16 @@ test("3 positif: overdue tetap tampil dengan kategori berbeda", () => {
   assert.equal(r.length, 3);
   assert.ok(r.find((t) => t.id === 2)!.sisa_detik < 0);
 });
+
+test("4 edge: tepat 24 jam sebelum deadline masih normal", () => {
+    assert.equal(kat(run(seed(), "2026-07-01T10:00"))[2], "normal");
+  });
+  
+  test("5 edge: 23 jam 59 menit sebelum deadline mendekati", () => {
+    assert.equal(kat(run(seed(), "2026-07-01T10:01"))[2], "mendekati_deadline");
+  });
+  
+  test("6 edge: tepat di deadline masih mendekati, semenit kemudian overdue", () => {
+    assert.equal(kat(run(seed(), "2026-07-02T10:00"))[2], "mendekati_deadline");
+    assert.equal(kat(run(seed(), "2026-07-02T10:01"))[2], "overdue");
+});
