@@ -13,3 +13,14 @@ router.get("/", async (_req, res) => {
   ]);
   res.json(rows);
 });
+
+// tambah mata kuliah, body: name, kode, dosen
+router.post("/", async (req, res) => {
+  const { name, kode, dosen } = req.body ?? {};
+  if (!name || !kode || !dosen) return res.status(400).json({ error: "Nama, kode, dan dosen wajib diisi." });
+  const { rows } = await pool.query(
+    "INSERT INTO mata_kuliah (user_id, name, kode, dosen) VALUES ($1, $2, $3, $4) RETURNING id, name, kode, dosen",
+    [res.locals.userId, name, kode, dosen]
+  );
+  res.status(201).json(rows[0]);
+});
