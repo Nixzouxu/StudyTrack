@@ -134,3 +134,19 @@ button, input, select { font: inherit; color: inherit; }
 .empty { padding: var(--space-12) var(--space-6); text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--space-3); }
 .empty-title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-lg); }
 .skeleton { height: 120px; border-radius: var(--radius-md); background: var(--border); opacity: 0.5; }
+
+/* mata kuliah */
+.add-course { padding: var(--space-6); margin-bottom: var(--space-8); }
+.form-row { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
+.form-submit { align-self: flex-start; }
+.grid { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.course { position: relative; overflow: hidden; padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-1); min-height: 180px; }
+.course > * { position: relative; z-index: 1; }
+.course::after {
+  content: attr(data-kode); position: absolute; right: -6px; bottom: -14px; z-index: 0; pointer-events: none; white-space: nowrap;
+  font-family: var(--font-display); font-weight: 800; font-size: 4.5rem; line-height: 1;
+  color: transparent; -webkit-text-stroke: 1.5px var(--border);
+}
+.kode { font-family: var(--font-mono); font-weight: 700; font-size: var(--text-xs); color: var(--soon-text); width: fit-content; padding: 2px var(--space-3); border-radius: var(--radius-full); background: var(--soon-bg); }
+.course-name { font-size: var(--text-lg); font-weight: 700; margin-top: var(--space-3); }
+.course-del { margin-top: auto; align-self: flex-start; padding-left: 0; }
