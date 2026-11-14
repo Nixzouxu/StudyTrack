@@ -87,3 +87,15 @@ button, input, select { font: inherit; color: inherit; }
 .page-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-8); }
 .head-text { display: flex; flex-direction: column; gap: var(--space-2); }
 .page-head h1 { font-size: var(--text-2xl); font-weight: 800; line-height: 1.02; }
+
+/* ringkasan angka di atas daftar */
+.summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); margin-bottom: var(--space-8); }
+.stat { padding: var(--space-4) var(--space-6); border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--surface); box-shadow: var(--shadow-sm); }
+.stat b { display: block; font-family: var(--font-mono); font-size: var(--text-2xl); line-height: 1.05; font-weight: 700; }
+.stat span { font-family: var(--font-display); font-weight: 600; font-size: 0.875rem; color: var(--text-muted); }
+.stat.soon { background: var(--soon-bg); border-color: var(--soon-accent); color: var(--soon-text); }
+.stat.late { background: var(--late-bg); border-color: var(--late-accent); color: var(--late-text); }
+.stat.soon span, .stat.late span { color: inherit; }
+
+.list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+.divider { margin: var(--space-6) 0 var(--space-1); }
