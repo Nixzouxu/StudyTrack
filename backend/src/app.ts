@@ -3,6 +3,7 @@ import type { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import authRoutes from "./routes/auth.js";
 import courseRoutes from "./routes/courses.js";
+import taskRoutes from "./routes/tasks.js";
 
 export function createApp() {
   const app = express();
@@ -11,6 +12,7 @@ export function createApp() {
   app.get("/api/health", (_req, res) => res.json({ ok: true }));
   app.use("/api/auth", authRoutes);
   app.use("/api/courses", courseRoutes);
+  app.use("/api/tasks", taskRoutes);
   app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
     console.error(err);
     res.status(500).json({ error: "Terjadi kesalahan pada server." });
