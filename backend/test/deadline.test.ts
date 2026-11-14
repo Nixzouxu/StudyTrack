@@ -46,3 +46,31 @@ test("4 edge: tepat 24 jam sebelum deadline masih normal", () => {
     assert.equal(kat(run(seed(), "2026-07-02T10:00"))[2], "mendekati_deadline");
     assert.equal(kat(run(seed(), "2026-07-02T10:01"))[2], "overdue");
 });
+
+test("7 positif: lintas mata kuliah, urutan T1, T3, T2", () => {
+    const r = run(seed(), "2026-07-03T00:00");
+    assert.deepEqual(kat(r), { 1: "mendekati_deadline", 2: "overdue", 3: "normal" });
+    assert.deepEqual(ids(r), [1, 3, 2]);
+  });
+  
+  test("8 negatif: tugas selesai tidak ditandai dan tidak naik", () => {
+    const t = seed();
+    t[1].status = "selesai";
+    const r = run(t, "2026-07-02T08:00");
+    assert.ok(r.every((x) => x.kategori === "normal"));
+    assert.deepEqual(ids(r), [3, 2, 1]);
+  });
+  
+  test("9 edge: dua tugas mendekati, deadline terdekat dulu", () => {
+    const t = seed();
+    t[2].deadline = new Date("2026-07-03T20:00:00+07:00");
+    assert.deepEqual(ids(run(t, "2026-07-03T00:00")).slice(0, 2), [3, 1]);
+  });
+  
+  test("11 edge: zona waktu tidak menggeser hasil (UTC dan WIB setara)", () => {
+    // 23:59 WIB = 16:59 UTC, jam 17:00 UTC T1 sudah overdue
+    const r = sortTasks(seed().map((t) => annotate(t, new Date("2026-07-03T17:00:00Z"))));
+    assert.equal(r.find((t) => t.id === 1)!.kategori, "overdue");
+    const r2 = sortTasks(seed().map((t) => annotate(t, new Date("2026-07-03T16:58:00Z"))));
+    assert.equal(r2.find((t) => t.id === 1)!.kategori, "mendekati_deadline");
+  });
