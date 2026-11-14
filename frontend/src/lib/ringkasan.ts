@@ -9,3 +9,11 @@ export function hitungRingkasan(tasks: Pick<Task, "kategori">[]) {
     overdue: tasks.filter((t) => t.kategori === "overdue").length
   };
 }
+// cari posisi pemisah tugas lainnya, yaitu tugas pertama setelah kelompok mendekati deadline
+// backend sudah mengurutkan, jadi tinggal cari yang pertama bukan mendekati
+// hasilnya -1 kalau pemisah tidak perlu ditampilkan
+export function indeksPemisah(tasks: Pick<Task, "kategori">[]): number {
+  const adaMendekati = tasks.some((t) => t.kategori === "mendekati_deadline");
+  if (!adaMendekati) return -1;
+  return tasks.findIndex((t) => t.kategori !== "mendekati_deadline");
+}
