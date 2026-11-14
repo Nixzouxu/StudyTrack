@@ -73,3 +73,16 @@ router.patch("/:id/status", async (req, res) => {
   if (rows.length === 0) return res.status(404).json({ error: "Tugas tidak ditemukan." });
   res.json(rows[0]);
 });
+
+// hapus tugas milik user yang login
+router.delete("/:id", async (req, res) => {
+  const r = await pool.query(
+    `DELETE FROM tugas t USING mata_kuliah mk
+      WHERE t.id = $1 AND mk.id = t.mata_kuliah_id AND mk.user_id = $2`,
+    [req.params.id, res.locals.userId]
+  );
+  if (r.rowCount === 0) return res.status(404).json({ error: "Tugas tidak ditemukan." });
+  res.status(204).end();
+});
+
+export default router;
