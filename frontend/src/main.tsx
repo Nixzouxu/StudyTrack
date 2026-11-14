@@ -6,6 +6,7 @@ import "@fontsource-variable/instrument-sans";
 import "@fontsource-variable/jetbrains-mono";
 import "./styles/tokens.css";
 import "./styles/styles.css";
+import "./styles/app.css";
 import "./styles/landing.css";
 
 createRoot(document.getElementById("root")!).render(
