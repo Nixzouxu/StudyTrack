@@ -47,3 +47,8 @@
 .m-hand { transform-origin: 32px 32px; animation: sweep 6s linear infinite; }
 .m-hub { fill: var(--text); }
 .logout-panel .modal-actions { align-self: stretch; }
+
+@media (prefers-reduced-motion: reduce) {
+    .bd-rings, .m-hand, .page-enter { animation: none; }
+    .task:hover, .course:hover { translate: none; }
+  }
