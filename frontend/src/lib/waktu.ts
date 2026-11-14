@@ -17,3 +17,7 @@ export function labelPenanda(kategori: Kategori, sisaDetik: number): string | nu
   if (kategori === "overdue") return `Terlambat ${formatDurasi(-sisaDetik)}`;
   return null;
 }
+// nilai datetime-local dikirim ke backend dalam format ISO lengkap dengan zona waktu
+export function keIsoDenganZona(nilaiInput: string): string {
+  return new Date(nilaiInput).toISOString();
+}
