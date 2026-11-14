@@ -21,3 +21,33 @@ button, input, select { font: inherit; color: inherit; }
 .small { font-size: var(--text-xs); }
 .mono { font-family: var(--font-mono); }
 .error { color: var(--danger); font-size: var(--text-xs); }
+
+/* label kecil di atas judul */
+.label { font-family: var(--font-display); font-weight: 600; font-size: 0.875rem; letter-spacing: 0.01em; color: var(--text-muted); }
+
+/* tombol, tinggi minimal 44px biar gampang ditekan */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  min-height: 44px; padding: 0 var(--space-6);
+  border: 1px solid transparent; border-radius: var(--radius-full);
+  background: transparent; cursor: pointer; font-weight: 600; text-decoration: none;
+  transition: transform var(--dur-press) var(--ease-out), background-color var(--dur-ui) ease, opacity var(--dur-ui) ease;
+}
+.btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: 0.7; cursor: progress; }
+.btn-sm { min-height: 36px; padding: 0 var(--space-4); font-size: var(--text-xs); }
+.btn-block { width: 100%; }
+.btn-primary { background: var(--primary); color: var(--on-primary); }
+.btn-ghost { border-color: var(--border); color: var(--text); }
+.btn-text { min-height: 44px; padding: 0 var(--space-3); color: var(--text); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.btn-text.danger { color: var(--danger); }
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover { background: var(--primary-hover); }
+  .btn-ghost:hover { background: var(--surface); }
+  .btn-text:hover { text-decoration-thickness: 2px; }
+}
+.btn[aria-busy="true"]::before {
+  content: ""; width: 14px; height: 14px; border-radius: 50%;
+  border: 2px solid currentColor; border-right-color: transparent; animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { rotate: 360deg; } }
