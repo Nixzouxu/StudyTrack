@@ -11,3 +11,9 @@ export function formatDurasi(detik: number): string {
   if (jam > 0) return `${jam} jam ${mnt} menit`;
   return `${mnt} menit`;
 }
+// teks penanda di card, kategorinya sudah dihitung backend
+export function labelPenanda(kategori: Kategori, sisaDetik: number): string | null {
+  if (kategori === "mendekati_deadline") return `Segera: sisa ${formatDurasi(sisaDetik)}`;
+  if (kategori === "overdue") return `Terlambat ${formatDurasi(-sisaDetik)}`;
+  return null;
+}
