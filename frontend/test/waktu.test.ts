@@ -14,3 +14,18 @@ test("penanda sesuai kategori", () => {
     assert.equal(labelPenanda("overdue", -3600), "Terlambat 1 jam 0 menit");
     assert.equal(labelPenanda("normal", 999999), null);
   });
+
+  import { hitungRingkasan, indeksPemisah } from "../src/lib/ringkasan";
+
+const k = (kategori: "normal" | "mendekati_deadline" | "overdue") => ({ kategori });
+
+test("ringkasan menghitung per kategori", () => {
+  const r = hitungRingkasan([k("mendekati_deadline"), k("mendekati_deadline"), k("overdue"), k("normal")]);
+  assert.deepEqual(r, { total: 4, mendekati: 2, overdue: 1 });
+});
+
+test("pemisah ada tepat setelah kelompok mendekati", () => {
+  assert.equal(indeksPemisah([k("mendekati_deadline"), k("mendekati_deadline"), k("normal"), k("overdue")]), 2);
+  assert.equal(indeksPemisah([k("normal"), k("overdue")]), -1);
+  assert.equal(indeksPemisah([k("mendekati_deadline")]), -1);
+});
