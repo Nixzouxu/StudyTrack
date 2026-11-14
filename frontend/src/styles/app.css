@@ -1,0 +1,6 @@
+/*
+  gaya buat halaman setelah login (Tugas, Mata Kuliah, popup keluar)
+  yang dianimasikan cuma transform, opacity, dan clip-path
+*/
+.app { position: relative; min-height: 100vh; }
+.app > .topbar, .app > main { position: relative; z-index: 1; }
