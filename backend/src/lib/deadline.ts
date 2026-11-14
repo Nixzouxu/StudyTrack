@@ -19,3 +19,16 @@ export interface TugasRow {
 }
 
 export type TugasBerkategori = TugasRow & { kategori: Kategori; sisa_detik: number };
+
+// aturan kategori:
+// - tugas selesai dianggap normal
+// - lewat deadline = overdue
+// - sisa kurang dari 24 jam = mendekati deadline
+// - selain itu normal (tepat 24 jam masih normal)
+export function kategori(deadline: Date, status: "belum" | "selesai", now: Date): Kategori {
+  if (status === "selesai") return "normal";
+  const sisa = deadline.getTime() - now.getTime();
+  if (sisa < 0) return "overdue";
+  if (sisa < NEAR_DEADLINE_MS) return "mendekati_deadline";
+  return "normal";
+}
