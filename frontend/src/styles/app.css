@@ -36,3 +36,14 @@
 @media (hover: hover) and (pointer: fine) {
   .task:hover, .course:hover { translate: 0 -3px; box-shadow: var(--shadow-md); }
 }
+
+/* popup keluar */
+.logout-panel { align-items: flex-start; }
+.m-glow { position: absolute; width: 220px; height: 220px; right: -70px; top: -90px; border-radius: 50%; background: var(--soon-accent); opacity: 0.16; filter: blur(50px); pointer-events: none; }
+.logout-panel > *:not(.m-glow) { position: relative; }
+.m-dial { width: 56px; height: 56px; }
+.m-ring { fill: none; stroke: var(--soon-accent); stroke-width: 3; }
+.m-hand line { stroke: var(--text); stroke-width: 3; stroke-linecap: round; }
+.m-hand { transform-origin: 32px 32px; animation: sweep 6s linear infinite; }
+.m-hub { fill: var(--text); }
+.logout-panel .modal-actions { align-self: stretch; }
