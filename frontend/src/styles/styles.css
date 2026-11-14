@@ -150,3 +150,20 @@ button, input, select { font: inherit; color: inherit; }
 .kode { font-family: var(--font-mono); font-weight: 700; font-size: var(--text-xs); color: var(--soon-text); width: fit-content; padding: 2px var(--space-3); border-radius: var(--radius-full); background: var(--soon-bg); }
 .course-name { font-size: var(--text-lg); font-weight: 700; margin-top: var(--space-3); }
 .course-del { margin-top: auto; align-self: flex-start; padding-left: 0; }
+
+/* dialog bawaan browser */
+dialog.modal {
+  width: min(480px, calc(100vw - 32px)); padding: 0; border: 1px solid var(--border); overflow: visible;
+  border-radius: var(--radius-md); background: var(--surface); color: var(--text); box-shadow: var(--shadow-md);
+  opacity: 0; transform: scale(0.97);
+  transition: opacity var(--dur-dialog) var(--ease-out), transform var(--dur-dialog) var(--ease-out),
+    overlay var(--dur-dialog) allow-discrete, display var(--dur-dialog) allow-discrete;
+}
+dialog.modal[open] { opacity: 1; transform: none; }
+@starting-style { dialog.modal[open] { opacity: 0; transform: scale(0.97); } }
+dialog.modal::backdrop { background: rgb(8 12 28 / 0.55); backdrop-filter: blur(6px); opacity: 0; transition: opacity var(--dur-dialog) var(--ease-out), overlay var(--dur-dialog) allow-discrete, display var(--dur-dialog) allow-discrete; }
+dialog.modal[open]::backdrop { opacity: 1; }
+@starting-style { dialog.modal[open]::backdrop { opacity: 0; } }
+.modal-panel { position: relative; overflow: hidden; border-radius: var(--radius-md); padding: var(--space-8); display: flex; flex-direction: column; gap: var(--space-4); }
+.modal-panel h2 { font-size: var(--text-xl); }
+.modal-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); }
