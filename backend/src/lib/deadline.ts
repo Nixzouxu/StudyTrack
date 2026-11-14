@@ -41,3 +41,14 @@ export function annotate(task: TugasRow, now: Date): TugasBerkategori {
     sisa_detik: Math.trunc((task.deadline.getTime() - now.getTime()) / 1000)
   };
 }
+
+// tugas mendekati deadline di paling atas (deadline terdekat dulu)
+// sisanya urut created_at terbaru kayak sebelumnya
+export function sortTasks(tasks: TugasBerkategori[]): TugasBerkategori[] {
+  const rank = (t: TugasBerkategori) => (t.kategori === "mendekati_deadline" ? 0 : 1);
+  return [...tasks].sort((a, b) => {
+    if (rank(a) !== rank(b)) return rank(a) - rank(b);
+    if (rank(a) === 0) return a.deadline.getTime() - b.deadline.getTime();
+    return b.created_at.getTime() - a.created_at.getTime();
+  });
+}
