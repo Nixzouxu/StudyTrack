@@ -58,3 +58,18 @@ router.post("/", async (req, res) => {
   );
   res.status(201).json(rows[0]);
 });
+
+// ubah status tugas, isinya belum atau selesai
+router.patch("/:id/status", async (req, res) => {
+  const { status } = req.body ?? {};
+  if (status !== "belum" && status !== "selesai") return res.status(400).json({ error: "Status harus belum atau selesai." });
+  const { rows } = await pool.query(
+    `UPDATE tugas t SET status = $1
+       FROM mata_kuliah mk
+      WHERE t.id = $2 AND mk.id = t.mata_kuliah_id AND mk.user_id = $3
+      RETURNING t.id, t.status`,
+    [status, req.params.id, res.locals.userId]
+  );
+  if (rows.length === 0) return res.status(404).json({ error: "Tugas tidak ditemukan." });
+  res.json(rows[0]);
+});
