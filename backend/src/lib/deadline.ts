@@ -32,3 +32,12 @@ export function kategori(deadline: Date, status: "belum" | "selesai", now: Date)
   if (sisa < NEAR_DEADLINE_MS) return "mendekati_deadline";
   return "normal";
 }
+
+// tambah kategori sama sisa_detik (minus kalau sudah overdue)
+export function annotate(task: TugasRow, now: Date): TugasBerkategori {
+  return {
+    ...task,
+    kategori: kategori(task.deadline, task.status, now),
+    sisa_detik: Math.trunc((task.deadline.getTime() - now.getTime()) / 1000)
+  };
+}
